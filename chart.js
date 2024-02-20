@@ -3469,7 +3469,7 @@
 	
 	    saveButton = Ext.create('Ext.button.Button', {
 	        text: i18n.save,
-	        // DataOrb-1147: avoid server conflict error when name value is not set
+	        // DHIS2-1147: avoid server conflict error when name value is not set
 	        disabled: true,
 	        xable: function xable() {
 	            this.setDisabled(!nameTextField.getValue());
@@ -3482,7 +3482,7 @@
 	    saveButtonHandler = function saveButtonHandler() {
 	        var name = nameTextField.getValue();
 	
-	        // DataOrb-1147: avoid submitting when no name is available
+	        // DHIS2-1147: avoid submitting when no name is available
 	        if (!name) {
 	            return;
 	        }
@@ -3765,7 +3765,7 @@
 	                    if (record.data.access['delete']) {
 	                        uiManager.confirmDelete(i18n.delete_favorite, function () {
 	                            instanceManager.delById(id, function () {
-	                                // DataOrb-1475: preserve the filter when reloading the favorite list
+	                                // DHIS2-1475: preserve the filter when reloading the favorite list
 	                                favoriteStore.loadStore(getStoreUrl(null, true));
 	
 	                                if (id === instanceManager.getStateFavoriteId()) {
@@ -3909,7 +3909,7 @@
 	    });
 	
 	    nameTextField.setEventKeyUpHandler(saveButtonHandler);
-	    // DataOrb-1147: enable Save button on name value change
+	    // DHIS2-1147: enable Save button on name value change
 	    nameTextField.setEventChangeHandler(function () {
 	        saveButton.xable();
 	    });
@@ -10107,7 +10107,7 @@
 	                var isTooLongDescription = description.length > descriptionMaxNumberCharacter;
 	                var shortDescription = description.substring(0, descriptionMaxNumberCharacter) + ' ... ';
 	
-	                // DataOrb-2210: render line breaks
+	                // DHIS2-2210: render line breaks
 	                description = description.replace(/\n/g, '<br />');
 	                shortDescription = shortDescription.replace(/\n/g, '<br />');
 	
@@ -13846,7 +13846,7 @@
 	        config = (0, _getSortedConfig2.default)(config, _layout, isStacked);
 	    }
 	
-	    // DataOrb-1243 add trend lines after sorting
+	    // DHIS2-1243 add trend lines after sorting
 	    // trend line on pie and gauge does not make sense
 	    if ((0, _isString2.default)(_layout.regressionType) && _layout.regressionType !== 'NONE' && !(0, _addTrendLines.isRegressionIneligible)(_layout.type)) {
 	        config.series = (0, _addTrendLines2.default)(_layout.regressionType, config.series, isStacked);
@@ -13927,7 +13927,7 @@
 	        domainAxisLabel: layout.domainAxisLabel || layout.domainAxisTitle,
 	        targetLineLabel: layout.targetLineLabel || layout.targetLineTitle,
 	        baseLineLabel: layout.baseLineLabel || layout.baseLineTitle,
-	        // DataOrb-6774: make sure seriesItems is initialized as Array when switching
+	        // DHIS2-6774: make sure seriesItems is initialized as Array when switching
 	        // visualization type in dashboards app
 	        seriesItems: layout.seriesItems || []
 	    });
@@ -14218,11 +14218,11 @@
 	
 	    // stacked
 	    if (isStacked) {
-	      // DataOrb-1060: stacked charts can optionally be shown as 100% stacked charts
+	      // DHIS2-1060: stacked charts can optionally be shown as 100% stacked charts
 	      seriesObj.stacking = layout.percentStackedValues === true ? HIGHCHARTS_TYPE_PERCENT : HIGHCHARTS_TYPE_NORMAL;
 	    }
 	
-	    // DataOrb-2101
+	    // DHIS2-2101
 	    // show bar/column chart as EPI curve (basically remove spacing between bars/columns)
 	    if (layout.noSpaceBetweenColumns) {
 	      var seriesType = (0, _type2.default)(layout.type).type;
@@ -14245,7 +14245,7 @@
 	    }
 	  });
 	
-	  // DataOrb-701: use cumulative values
+	  // DHIS2-701: use cumulative values
 	  if (layout.cumulativeValues === true) {
 	    series = (0, _getCumulativeData2.default)(series);
 	  }
@@ -14332,7 +14332,7 @@
 	        return null;
 	    }
 	
-	    // DataOrb-578: allow for optional custom subtitle
+	    // DHIS2-578: allow for optional custom subtitle
 	    if ((0, _isString2.default)(layout.subtitle)) {
 	        subtitle.text = layout.subtitle;
 	    } else {
@@ -14373,7 +14373,7 @@
 	
 	var DEFAULT_SUBTITLE = {
 	    style: {
-	        // DataOrb-578: dynamically truncate subtitle when it's taking more than 1 line
+	        // DHIS2-578: dynamically truncate subtitle when it's taking more than 1 line
 	        whiteSpace: 'nowrap',
 	        overflow: 'hidden',
 	        textOverflow: 'ellipsis',
@@ -14386,7 +14386,7 @@
 	
 	var DASHBOARD_SUBTITLE = {
 	    style: {
-	        // DataOrb-578: dynamically truncate subtitle when it's taking more than 1 line
+	        // DHIS2-578: dynamically truncate subtitle when it's taking more than 1 line
 	        whiteSpace: 'nowrap',
 	        overflow: 'hidden',
 	        textOverflow: 'ellipsis',
@@ -14802,7 +14802,7 @@
 	            gridLineColor: DEFAULT_GRIDLINE_COLOR,
 	            labels: getLabels(layout),
 	
-	            // DataOrb-649: put first serie at the bottom of the stack
+	            // DHIS2-649: put first serie at the bottom of the stack
 	            // in this way the legend sequence matches the serie sequence
 	            reversedStacks: (0, _type.getIsStacked)(layout.type) ? false : true
 	        }));
@@ -15165,7 +15165,7 @@
 	        categoryIds.forEach(function (categoryId) {
 	            var value = idValueMap.get(seriesId + '-' + categoryId);
 	
-	            // DataOrb-1261: 0 is a valid value
+	            // DHIS2-1261: 0 is a valid value
 	            // undefined value means the key was not found within the rows
 	            // in that case null is returned as value in the serie for highcharts
 	            serieData.push(value == undefined ? null : parseFloat(value));
@@ -15240,7 +15240,7 @@
 	        categoryIds.forEach(function (categoryId) {
 	            var value = idValueMap.get(seriesId + "-" + categoryId);
 	
-	            // DataOrb-1261: 0 is a valid value
+	            // DHIS2-1261: 0 is a valid value
 	            // undefined value means the key was not found within the rows
 	            // in that case null is returned as value in the serie for highcharts
 	            serieData.push(value == undefined ? null : parseFloat(value));
@@ -15728,7 +15728,7 @@
 	 * @extends ModelBase
 	 *
 	 * @description
-	 * A Model represents an object from the DataOrb Api. A model is created based of a ModelDefinition. The ModelDefinition
+	 * A Model represents an object from the DHIS2 Api. A model is created based of a ModelDefinition. The ModelDefinition
 	 * has the properties that the model should have.
 	 *
 	 * @memberof module:model
@@ -15745,7 +15745,7 @@
 	   * Will create a new model instanced based on the model definition. When creating a new instance the model
 	   * definition needs to have both the modelValidations and modelProperties.
 	   *
-	   * The model properties will depend on the ModelDefinition. A model definition is based on a DataOrb Schema.
+	   * The model properties will depend on the ModelDefinition. A model definition is based on a DHIS2 Schema.
 	   */
 	  function Model(modelDefinition) {
 	    var _this = this;
@@ -15963,7 +15963,7 @@
 	         *
 	         * @description
 	         * This will run the validations on the properties which have validations set. Normally these validations are defined
-	         * through the DataOrb schema. It will check min/max for strings/numbers etc. Additionally it will
+	         * through the DHIS2 schema. It will check min/max for strings/numbers etc. Additionally it will
 	         * run model validations against the schema.
 	         *
 	         * ```js
@@ -19101,7 +19101,7 @@
 	        t.interpretationId = c.interpretationId;
 	    }
 	
-	    // DataOrb-2784: propagate both name and displayName
+	    // DHIS2-2784: propagate both name and displayName
 	    // to avoid name being replaced by a translation in the translate dialog
 	    // name
 	    if ((0, _isString2.default)(c.name)) {
@@ -19983,13 +19983,13 @@
 	
 	    var uiManager = refs.uiManager;
 	
-	    // DataOrb-3508: pass "null" as format
+	    // DHIS2-3508: pass "null" as format
 	    var metaDataRequest = this.req(source, null);
 	    var dataRequest = this.req(source, null, true);
 	
 	    var errorFn = function errorFn(r) {
 	        // 409
-	        // DataOrb-2020: 503 error (perhaps analytics maintenance mode)
+	        // DHIS2-2020: 503 error (perhaps analytics maintenance mode)
 	        if ((0, _isObject2.default)(r) && (r.status == 409 || r.status === 503)) {
 	            uiManager.unmask();
 	
@@ -30536,7 +30536,7 @@
 	    cmpConfig.i18n.untitled = cmpConfig.i18n.untitled || i18n.untitled || 'Untitled';
 	
 	    cmpConfig.theme = cmpConfig.theme || uiManager.getTheme();
-	    cmpConfig.systemTitle = cmpConfig.systemTitle || appManager.systemSettings.systemTitle || 'DataOrb';
+	    cmpConfig.systemTitle = cmpConfig.systemTitle || appManager.systemSettings.systemTitle || 'DHIS 2';
 	    cmpConfig.logoWidth = cmpConfig.logoWidth ? parseFloat(cmpConfig.logoWidth) : 418;
 	    cmpConfig.aboutFn = cmpConfig.aboutFn || function () {
 	        (0, _AboutWindow.AboutWindow)(c).getData();
@@ -34564,7 +34564,7 @@
 	                organisationUnitGroup.hide();
 	                treePanel.enable();
 	            } else if (param === 'group') {
-	                // DataOrb-561: avoid showing the group ids in the combobox when
+	                // DHIS2-561: avoid showing the group ids in the combobox when
 	                // loading a favorite and expanding the OU panel
 	                organisationUnitGroupStore.load();
 	
@@ -36054,7 +36054,7 @@
 	        }).run();
 	    };
 	
-	    // DataOrb-1496: filter by data element, program attribute or program indicator
+	    // DHIS2-1496: filter by data element, program attribute or program indicator
 	    var dataElementType = Ext.create('Ext.form.field.ComboBox', {
 	        editable: false,
 	        valueField: 'id',
@@ -37704,7 +37704,7 @@
 	                organisationUnitGroup.hide();
 	                treePanel.enable();
 	            } else if (param === 'group') {
-	                // DataOrb-561: avoid showing the group ids in the combobox when
+	                // DHIS2-561: avoid showing the group ids in the combobox when
 	                // loading a favorite and expanding the OU panel
 	                organisationUnitGroupStore.load();
 	
@@ -54899,7 +54899,7 @@
 	        }
 	
 	        /**
-	         * These properties can be translated using the DataOrb _database_ translations.
+	         * These properties can be translated using the DHIS2 _database_ translations.
 	         *
 	         * @returns {String[]} Returns a list of property names on the object that are translatable.
 	         */
@@ -55442,19 +55442,19 @@
 	        this.configuration = configuration;
 	
 	        /**
-	         * An object containing system information about the DataOrb instance
+	         * An object containing system information about the DHIS2 instance
 	         * @type {Object}
 	         */
 	        this.systemInfo = undefined;
 	
 	        /**
-	         * An object containing version information about the DataOrb instance
+	         * An object containing version information about the DHIS2 instance
 	         * @type {Object}
 	         */
 	        this.version = undefined;
 	
 	        /**
-	         * An array of all the webapps that are installed on the current DataOrb instance
+	         * An array of all the webapps that are installed on the current DHIS2 instance
 	         * @type {Array}
 	         */
 	        this.installedApps = undefined;
@@ -55542,7 +55542,7 @@
 	        }
 	
 	        /**
-	         * Load the list of apps available in the DataOrb app store
+	         * Load the list of apps available in the DHIS 2 app store
 	         *
 	         * @param compatibleOnly If true, apps that are incompatible with the current system will be filtered out
 	         * @returns {Promise}
@@ -55578,7 +55578,7 @@
 	        }
 	
 	        /**
-	         * Install the specified app version from the DataOrb app store
+	         * Install the specified app version from the DHIS 2 app store
 	         *
 	         * @param uid The uid of the app version to install
 	         * @returns {Promise}
@@ -55745,10 +55745,10 @@
 	 * @module uid
 	 *
 	 * @description
-	 * Client side implementation of the DataOrb code (uid) generator.
+	 * Client side implementation of the DHIS2 code (uid) generator.
 	 * ({@link https://github.com/dhis2/dhis2-core/blob/ad2d5dea959aff3146d8fe5796cf0b75eb6ee5d8/dhis-2/dhis-api/src/main/java/org/hisp/dhis/common/CodeGenerator.java|CodeGenerator.java})
 	 *
-	 * This module is used to generate and validate DataOrb uids. A valid DataOrb uid is a 11 character string which starts with a letter from the ISO basic Latin alphabet.
+	 * This module is used to generate and validate DHIS2 uids. A valid DHIS2 uid is a 11 character string which starts with a letter from the ISO basic Latin alphabet.
 	 */
 	
 	var abc = 'abcdefghijklmnopqrstuvwxyz';
@@ -55766,7 +55766,7 @@
 	}
 	
 	/**
-	 * Generate a valid DataOrb uid. A valid DataOrb uid is a 11 character string which starts with a letter from the ISO basic Latin alphabet.
+	 * Generate a valid DHIS2 uid. A valid DHIS2 uid is a 11 character string which starts with a letter from the ISO basic Latin alphabet.
 	 *
 	 * @return {string} A 11 character uid that always starts with a letter.
 	 *
@@ -59559,7 +59559,7 @@
 	/**
 	 * Utility function to load the app manifest.
 	 *
-	 * The manifest well be enhanced with a `getBaseUrl()` utility function that will return the base url of the DataOrb instance.
+	 * The manifest well be enhanced with a `getBaseUrl()` utility function that will return the base url of the DHIS2 instance.
 	 * This is a simple getter for the `activities.dhis.href` property on the manifest.
 	 *
 	 * @example
@@ -59573,7 +59573,7 @@
 	 * @param {string} url The location of the manifest. Generally this is located in the root of your app folder. (e.g. './manifest.webapp)
 	 * @param {Api} [ApiClass] An implementation of the Api class that will be used to fetch the manifest.
 	 *
-	 * @returns {Promise} Returns a Promise to  the DataOrb app manifest with the added `getBaseUrl` method.
+	 * @returns {Promise} Returns a Promise to  the DHIS2 app manifest with the added `getBaseUrl` method.
 	 */
 	function getManifest(url) {
 	    var ApiClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _Api2.default;
@@ -59652,7 +59652,7 @@
 	}
 	
 	/**
-	 * Init function that used to initialise {@link module:d2.init~d2|d2}. This will load the schemas from the DataOrb api and configure your {@link module:d2.init~d2|d2} instance.
+	 * Init function that used to initialise {@link module:d2.init~d2|d2}. This will load the schemas from the DHIS2 api and configure your {@link module:d2.init~d2|d2} instance.
 	 *
 	 * The `config` object that can be passed into init can have the following properties:
 	 *
@@ -59721,7 +59721,7 @@
 	         * System instance to interact with system information like system settings, system info etc.
 	         *
 	         * @example
-	         * console.log(d2.system.version.major); // 2 for DataOrb.27
+	         * console.log(d2.system.version.major); // 2 for DHIS 2.27
 	         *
 	         * @see {@link module:system/System~System|System}
 	         * @instance
@@ -59866,7 +59866,7 @@
 	    }).catch(function (error) {
 	        logger.error('Unable to get schemas from the api', JSON.stringify(error), error);
 	
-	        deferredD2Init.reject('Unable to get schemas from the DataOrb API');
+	        deferredD2Init.reject('Unable to get schemas from the DHIS2 API');
 	        return deferredD2Init.promise;
 	    });
 	}
@@ -59967,7 +59967,7 @@
 	 * can be used to interact with the {@link module:datastore.DataStoreNamespace namespace API}.
 	 *
 	 * The store is a key-value store, where a namespace contains a list of keys, and
-	 * a key corresponds to an arbitrary JSON-object. The dataStore is DataOrb-instance wide.
+	 * a key corresponds to an arbitrary JSON-object. The dataStore is DHIS2-instance wide.
 	 *
 	 * Note that a namespace cannot exist without at least one key-value pair, for this reason
 	 * you need to call {@link module:datastore.DataStoreNamespace#set set()} after {@link module:datastore.DataStore#create create()} to save a namespace
@@ -60656,7 +60656,7 @@
 	         * Load translations
 	         *
 	         * First, all properties files (specified with addSource) are loaded.
-	         * Then, if any untranslated strings remain, these are POSTed to the i18n endpoint of the DataOrb API.
+	         * Then, if any untranslated strings remain, these are POSTed to the i18n endpoint of the DHIS2 API.
 	         *
 	         * @returns {Promise}
 	         */
@@ -60966,7 +60966,7 @@
 	    }
 	
 	    /**
-	     * Utility function used to get the query parameter value in a DataOrb metadata filter format that can be
+	     * Utility function used to get the query parameter value in a DHIS2 metadata filter format that can be
 	     * send to the api. This returned value is appended to the `filter=` part of the query.
 	     *
 	     * @private
@@ -61142,7 +61142,7 @@
 	    }
 	
 	    /**
-	     * Get an array of DataOrb metadata filter values to send to the API.
+	     * Get an array of DHIS2 metadata filter values to send to the API.
 	     *
 	     * This will return ['id:eq:UYXOT4A7JMI', 'name:like:ANC'] for filters created as follows
 	     * dataElement

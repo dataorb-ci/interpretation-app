@@ -1076,7 +1076,7 @@
 	
 	/**
 	 * @description
-	 * Used for interaction with the DataOrb api.
+	 * Used for interaction with the dhis2 api.
 	 *
 	 * This class is used as the backbone for d2 and handles all the interaction with the server. There is a singleton
 	 * available to be reused across your applications. The singleton can be grabbed from the d2 instance.
@@ -1424,7 +1424,7 @@
 	        /**
 	         * Sets the baseUrl that should be used for the api.
 	         *
-	         * When working against the DataOrb demo instance at {@link https://play.dhis2.org/demo} the
+	         * When working against the dhis2 demo instance at {@link https://play.dhis2.org/demo} the
 	         * baseUrl would be set as `https://play.dhis2.org/demo/api`.
 	         *
 	         * This method is used when calling the `d2.init` method with the `baseUrl` config property
@@ -3469,7 +3469,7 @@
 	
 	    saveButton = Ext.create('Ext.button.Button', {
 	        text: i18n.save,
-	        // DHIS2-1147: avoid server conflict error when name value is not set
+	        // DataOrb-1147: avoid server conflict error when name value is not set
 	        disabled: true,
 	        xable: function xable() {
 	            this.setDisabled(!nameTextField.getValue());
@@ -3482,7 +3482,7 @@
 	    saveButtonHandler = function saveButtonHandler() {
 	        var name = nameTextField.getValue();
 	
-	        // DHIS2-1147: avoid submitting when no name is available
+	        // DataOrb-1147: avoid submitting when no name is available
 	        if (!name) {
 	            return;
 	        }
@@ -3765,7 +3765,7 @@
 	                    if (record.data.access['delete']) {
 	                        uiManager.confirmDelete(i18n.delete_favorite, function () {
 	                            instanceManager.delById(id, function () {
-	                                // DHIS2-1475: preserve the filter when reloading the favorite list
+	                                // DataOrb-1475: preserve the filter when reloading the favorite list
 	                                favoriteStore.loadStore(getStoreUrl(null, true));
 	
 	                                if (id === instanceManager.getStateFavoriteId()) {
@@ -3909,7 +3909,7 @@
 	    });
 	
 	    nameTextField.setEventKeyUpHandler(saveButtonHandler);
-	    // DHIS2-1147: enable Save button on name value change
+	    // DataOrb-1147: enable Save button on name value change
 	    nameTextField.setEventChangeHandler(function () {
 	        saveButton.xable();
 	    });
@@ -10107,7 +10107,7 @@
 	                var isTooLongDescription = description.length > descriptionMaxNumberCharacter;
 	                var shortDescription = description.substring(0, descriptionMaxNumberCharacter) + ' ... ';
 	
-	                // DHIS2-2210: render line breaks
+	                // DataOrb-2210: render line breaks
 	                description = description.replace(/\n/g, '<br />');
 	                shortDescription = shortDescription.replace(/\n/g, '<br />');
 	
@@ -13846,7 +13846,7 @@
 	        config = (0, _getSortedConfig2.default)(config, _layout, isStacked);
 	    }
 	
-	    // DHIS2-1243 add trend lines after sorting
+	    // DataOrb-1243 add trend lines after sorting
 	    // trend line on pie and gauge does not make sense
 	    if ((0, _isString2.default)(_layout.regressionType) && _layout.regressionType !== 'NONE' && !(0, _addTrendLines.isRegressionIneligible)(_layout.type)) {
 	        config.series = (0, _addTrendLines2.default)(_layout.regressionType, config.series, isStacked);
@@ -13927,7 +13927,7 @@
 	        domainAxisLabel: layout.domainAxisLabel || layout.domainAxisTitle,
 	        targetLineLabel: layout.targetLineLabel || layout.targetLineTitle,
 	        baseLineLabel: layout.baseLineLabel || layout.baseLineTitle,
-	        // DHIS2-6774: make sure seriesItems is initialized as Array when switching
+	        // DataOrb-6774: make sure seriesItems is initialized as Array when switching
 	        // visualization type in dashboards app
 	        seriesItems: layout.seriesItems || []
 	    });
@@ -14218,11 +14218,11 @@
 	
 	    // stacked
 	    if (isStacked) {
-	      // DHIS2-1060: stacked charts can optionally be shown as 100% stacked charts
+	      // DataOrb-1060: stacked charts can optionally be shown as 100% stacked charts
 	      seriesObj.stacking = layout.percentStackedValues === true ? HIGHCHARTS_TYPE_PERCENT : HIGHCHARTS_TYPE_NORMAL;
 	    }
 	
-	    // DHIS2-2101
+	    // DataOrb-2101
 	    // show bar/column chart as EPI curve (basically remove spacing between bars/columns)
 	    if (layout.noSpaceBetweenColumns) {
 	      var seriesType = (0, _type2.default)(layout.type).type;
@@ -14245,7 +14245,7 @@
 	    }
 	  });
 	
-	  // DHIS2-701: use cumulative values
+	  // DataOrb-701: use cumulative values
 	  if (layout.cumulativeValues === true) {
 	    series = (0, _getCumulativeData2.default)(series);
 	  }
@@ -14332,7 +14332,7 @@
 	        return null;
 	    }
 	
-	    // DHIS2-578: allow for optional custom subtitle
+	    // DataOrb-578: allow for optional custom subtitle
 	    if ((0, _isString2.default)(layout.subtitle)) {
 	        subtitle.text = layout.subtitle;
 	    } else {
@@ -14373,7 +14373,7 @@
 	
 	var DEFAULT_SUBTITLE = {
 	    style: {
-	        // DHIS2-578: dynamically truncate subtitle when it's taking more than 1 line
+	        // DataOrb-578: dynamically truncate subtitle when it's taking more than 1 line
 	        whiteSpace: 'nowrap',
 	        overflow: 'hidden',
 	        textOverflow: 'ellipsis',
@@ -14386,7 +14386,7 @@
 	
 	var DASHBOARD_SUBTITLE = {
 	    style: {
-	        // DHIS2-578: dynamically truncate subtitle when it's taking more than 1 line
+	        // DataOrb-578: dynamically truncate subtitle when it's taking more than 1 line
 	        whiteSpace: 'nowrap',
 	        overflow: 'hidden',
 	        textOverflow: 'ellipsis',
@@ -14802,7 +14802,7 @@
 	            gridLineColor: DEFAULT_GRIDLINE_COLOR,
 	            labels: getLabels(layout),
 	
-	            // DHIS2-649: put first serie at the bottom of the stack
+	            // DataOrb-649: put first serie at the bottom of the stack
 	            // in this way the legend sequence matches the serie sequence
 	            reversedStacks: (0, _type.getIsStacked)(layout.type) ? false : true
 	        }));
@@ -15165,7 +15165,7 @@
 	        categoryIds.forEach(function (categoryId) {
 	            var value = idValueMap.get(seriesId + '-' + categoryId);
 	
-	            // DHIS2-1261: 0 is a valid value
+	            // DataOrb-1261: 0 is a valid value
 	            // undefined value means the key was not found within the rows
 	            // in that case null is returned as value in the serie for highcharts
 	            serieData.push(value == undefined ? null : parseFloat(value));
@@ -15240,7 +15240,7 @@
 	        categoryIds.forEach(function (categoryId) {
 	            var value = idValueMap.get(seriesId + "-" + categoryId);
 	
-	            // DHIS2-1261: 0 is a valid value
+	            // DataOrb-1261: 0 is a valid value
 	            // undefined value means the key was not found within the rows
 	            // in that case null is returned as value in the serie for highcharts
 	            serieData.push(value == undefined ? null : parseFloat(value));
@@ -19101,7 +19101,7 @@
 	        t.interpretationId = c.interpretationId;
 	    }
 	
-	    // DHIS2-2784: propagate both name and displayName
+	    // DataOrb-2784: propagate both name and displayName
 	    // to avoid name being replaced by a translation in the translate dialog
 	    // name
 	    if ((0, _isString2.default)(c.name)) {
@@ -19983,13 +19983,13 @@
 	
 	    var uiManager = refs.uiManager;
 	
-	    // DHIS2-3508: pass "null" as format
+	    // DataOrb-3508: pass "null" as format
 	    var metaDataRequest = this.req(source, null);
 	    var dataRequest = this.req(source, null, true);
 	
 	    var errorFn = function errorFn(r) {
 	        // 409
-	        // DHIS2-2020: 503 error (perhaps analytics maintenance mode)
+	        // DataOrb-2020: 503 error (perhaps analytics maintenance mode)
 	        if ((0, _isObject2.default)(r) && (r.status == 409 || r.status === 503)) {
 	            uiManager.unmask();
 	
@@ -34564,7 +34564,7 @@
 	                organisationUnitGroup.hide();
 	                treePanel.enable();
 	            } else if (param === 'group') {
-	                // DHIS2-561: avoid showing the group ids in the combobox when
+	                // DataOrb-561: avoid showing the group ids in the combobox when
 	                // loading a favorite and expanding the OU panel
 	                organisationUnitGroupStore.load();
 	
@@ -36054,7 +36054,7 @@
 	        }).run();
 	    };
 	
-	    // DHIS2-1496: filter by data element, program attribute or program indicator
+	    // DataOrb-1496: filter by data element, program attribute or program indicator
 	    var dataElementType = Ext.create('Ext.form.field.ComboBox', {
 	        editable: false,
 	        valueField: 'id',
@@ -37704,7 +37704,7 @@
 	                organisationUnitGroup.hide();
 	                treePanel.enable();
 	            } else if (param === 'group') {
-	                // DHIS2-561: avoid showing the group ids in the combobox when
+	                // DataOrb-561: avoid showing the group ids in the combobox when
 	                // loading a favorite and expanding the OU panel
 	                organisationUnitGroupStore.load();
 	
@@ -54622,7 +54622,7 @@
 	 * Definition of a Model. Basically this object contains the meta data related to the Model. Like `name`, `apiEndPoint`, `modelValidation`, etc.
 	 * It also has methods to create and load Models that are based on this definition. The Data element `ModelDefinition` would be used to create Data Element `Model`s
 	 *
-	 * Note: ModelDefinition has a property `api` that is used for the communication with the DataOrb api. The value of this
+	 * Note: ModelDefinition has a property `api` that is used for the communication with the dhis2 api. The value of this
 	 * property is an instance of `Api`.
 	 *
 	 * @memberof module:model
@@ -59721,7 +59721,7 @@
 	         * System instance to interact with system information like system settings, system info etc.
 	         *
 	         * @example
-	         * console.log(d2.system.version.major); // 2 for DataOrb 2.27
+	         * console.log(d2.system.version.major); // 2 for DataOrb.27
 	         *
 	         * @see {@link module:system/System~System|System}
 	         * @instance
@@ -59967,7 +59967,7 @@
 	 * can be used to interact with the {@link module:datastore.DataStoreNamespace namespace API}.
 	 *
 	 * The store is a key-value store, where a namespace contains a list of keys, and
-	 * a key corresponds to an arbitrary JSON-object. The dataStore is DHIS2-instance wide.
+	 * a key corresponds to an arbitrary JSON-object. The dataStore is DataOrb-instance wide.
 	 *
 	 * Note that a namespace cannot exist without at least one key-value pair, for this reason
 	 * you need to call {@link module:datastore.DataStoreNamespace#set set()} after {@link module:datastore.DataStore#create create()} to save a namespace
@@ -61866,7 +61866,7 @@
 	    *
 	    * This page will give you an introduction on one of the largest and more complex parts of d2, the metadata models.
 	    *
-	    * Models are an abstraction on top of the DataOrb metadata api. We can use these models to interact with the DataOrb api.
+	    * Models are an abstraction on top of the dhis2 metadata api. We can use these models to interact with the dhis2 api.
 	    * The models are accessible on the `.models` property that is attached to the d2 instance (that is retrieved by calling
 	    * `getInstance()`).
 	    *

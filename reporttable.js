@@ -2481,7 +2481,7 @@
 	
 	    saveButton = Ext.create('Ext.button.Button', {
 	        text: i18n.save,
-	        // DHIS2-1147: avoid server conflict error when name value is not set
+	        // DataOrb-1147: avoid server conflict error when name value is not set
 	        disabled: true,
 	        xable: function xable() {
 	            this.setDisabled(!nameTextField.getValue());
@@ -2494,7 +2494,7 @@
 	    saveButtonHandler = function saveButtonHandler() {
 	        var name = nameTextField.getValue();
 	
-	        // DHIS2-1147: avoid submitting when no name is available
+	        // DataOrb-1147: avoid submitting when no name is available
 	        if (!name) {
 	            return;
 	        }
@@ -2777,7 +2777,7 @@
 	                    if (record.data.access['delete']) {
 	                        uiManager.confirmDelete(i18n.delete_favorite, function () {
 	                            instanceManager.delById(id, function () {
-	                                // DHIS2-1475: preserve the filter when reloading the favorite list
+	                                // DataOrb-1475: preserve the filter when reloading the favorite list
 	                                favoriteStore.loadStore(getStoreUrl(null, true));
 	
 	                                if (id === instanceManager.getStateFavoriteId()) {
@@ -2921,7 +2921,7 @@
 	    });
 	
 	    nameTextField.setEventKeyUpHandler(saveButtonHandler);
-	    // DHIS2-1147: enable Save button on name value change
+	    // DataOrb-1147: enable Save button on name value change
 	    nameTextField.setEventChangeHandler(function () {
 	        saveButton.xable();
 	    });
@@ -8522,7 +8522,7 @@
 	                var isTooLongDescription = description.length > descriptionMaxNumberCharacter;
 	                var shortDescription = description.substring(0, descriptionMaxNumberCharacter) + ' ... ';
 	
-	                // DHIS2-2210: render line breaks
+	                // DataOrb-2210: render line breaks
 	                description = description.replace(/\n/g, '<br />');
 	                shortDescription = shortDescription.replace(/\n/g, '<br />');
 	
@@ -11188,7 +11188,7 @@
 	        t.interpretationId = c.interpretationId;
 	    }
 	
-	    // DHIS2-2784: propagate both name and displayName
+	    // DataOrb-2784: propagate both name and displayName
 	    // to avoid name being replaced by a translation in the translate dialog
 	    // name
 	    if ((0, _isString2.default)(c.name)) {
@@ -12070,13 +12070,13 @@
 	
 	    var uiManager = refs.uiManager;
 	
-	    // DHIS2-3508: pass "null" as format
+	    // DataOrb-3508: pass "null" as format
 	    var metaDataRequest = this.req(source, null);
 	    var dataRequest = this.req(source, null, true);
 	
 	    var errorFn = function errorFn(r) {
 	        // 409
-	        // DHIS2-2020: 503 error (perhaps analytics maintenance mode)
+	        // DataOrb-2020: 503 error (perhaps analytics maintenance mode)
 	        if ((0, _isObject2.default)(r) && (r.status == 409 || r.status === 503)) {
 	            uiManager.unmask();
 	
@@ -26651,7 +26651,7 @@
 	                organisationUnitGroup.hide();
 	                treePanel.enable();
 	            } else if (param === 'group') {
-	                // DHIS2-561: avoid showing the group ids in the combobox when
+	                // DataOrb-561: avoid showing the group ids in the combobox when
 	                // loading a favorite and expanding the OU panel
 	                organisationUnitGroupStore.load();
 	
@@ -28141,7 +28141,7 @@
 	        }).run();
 	    };
 	
-	    // DHIS2-1496: filter by data element, program attribute or program indicator
+	    // DataOrb-1496: filter by data element, program attribute or program indicator
 	    var dataElementType = Ext.create('Ext.form.field.ComboBox', {
 	        editable: false,
 	        valueField: 'id',
@@ -29791,7 +29791,7 @@
 	                organisationUnitGroup.hide();
 	                treePanel.enable();
 	            } else if (param === 'group') {
-	                // DHIS2-561: avoid showing the group ids in the combobox when
+	                // DataOrb-561: avoid showing the group ids in the combobox when
 	                // loading a favorite and expanding the OU panel
 	                organisationUnitGroupStore.load();
 	

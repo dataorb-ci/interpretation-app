@@ -22623,7 +22623,7 @@
 	    cmpConfig.i18n.untitled = cmpConfig.i18n.untitled || i18n.untitled || 'Untitled';
 	
 	    cmpConfig.theme = cmpConfig.theme || uiManager.getTheme();
-	    cmpConfig.systemTitle = cmpConfig.systemTitle || appManager.systemSettings.systemTitle || 'DHIS 2';
+	    cmpConfig.systemTitle = cmpConfig.systemTitle || appManager.systemSettings.systemTitle || 'DataOrb';
 	    cmpConfig.logoWidth = cmpConfig.logoWidth ? parseFloat(cmpConfig.logoWidth) : 418;
 	    cmpConfig.aboutFn = cmpConfig.aboutFn || function () {
 	        (0, _AboutWindow.AboutWindow)(c).getData();

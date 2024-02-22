@@ -15728,7 +15728,7 @@
 	 * @extends ModelBase
 	 *
 	 * @description
-	 * A Model represents an object from the DHIS2 Api. A model is created based of a ModelDefinition. The ModelDefinition
+	 * A Model represents an object from the DataOrb Api. A model is created based of a ModelDefinition. The ModelDefinition
 	 * has the properties that the model should have.
 	 *
 	 * @memberof module:model
@@ -15745,7 +15745,7 @@
 	   * Will create a new model instanced based on the model definition. When creating a new instance the model
 	   * definition needs to have both the modelValidations and modelProperties.
 	   *
-	   * The model properties will depend on the ModelDefinition. A model definition is based on a DHIS2 Schema.
+	   * The model properties will depend on the ModelDefinition. A model definition is based on a DataOrb Schema.
 	   */
 	  function Model(modelDefinition) {
 	    var _this = this;
@@ -15963,7 +15963,7 @@
 	         *
 	         * @description
 	         * This will run the validations on the properties which have validations set. Normally these validations are defined
-	         * through the DHIS2 schema. It will check min/max for strings/numbers etc. Additionally it will
+	         * through the DataOrb schema. It will check min/max for strings/numbers etc. Additionally it will
 	         * run model validations against the schema.
 	         *
 	         * ```js
@@ -30536,7 +30536,7 @@
 	    cmpConfig.i18n.untitled = cmpConfig.i18n.untitled || i18n.untitled || 'Untitled';
 	
 	    cmpConfig.theme = cmpConfig.theme || uiManager.getTheme();
-	    cmpConfig.systemTitle = cmpConfig.systemTitle || appManager.systemSettings.systemTitle || 'DHIS 2';
+	    cmpConfig.systemTitle = cmpConfig.systemTitle || appManager.systemSettings.systemTitle || 'DataOrb';
 	    cmpConfig.logoWidth = cmpConfig.logoWidth ? parseFloat(cmpConfig.logoWidth) : 418;
 	    cmpConfig.aboutFn = cmpConfig.aboutFn || function () {
 	        (0, _AboutWindow.AboutWindow)(c).getData();
@@ -54899,7 +54899,7 @@
 	        }
 	
 	        /**
-	         * These properties can be translated using the DHIS2 _database_ translations.
+	         * These properties can be translated using the DataOrb _database_ translations.
 	         *
 	         * @returns {String[]} Returns a list of property names on the object that are translatable.
 	         */
@@ -55442,19 +55442,19 @@
 	        this.configuration = configuration;
 	
 	        /**
-	         * An object containing system information about the DHIS2 instance
+	         * An object containing system information about the DataOrb instance
 	         * @type {Object}
 	         */
 	        this.systemInfo = undefined;
 	
 	        /**
-	         * An object containing version information about the DHIS2 instance
+	         * An object containing version information about the DataOrb instance
 	         * @type {Object}
 	         */
 	        this.version = undefined;
 	
 	        /**
-	         * An array of all the webapps that are installed on the current DHIS2 instance
+	         * An array of all the webapps that are installed on the current DataOrb instance
 	         * @type {Array}
 	         */
 	        this.installedApps = undefined;
@@ -55542,7 +55542,7 @@
 	        }
 	
 	        /**
-	         * Load the list of apps available in the DHIS 2 app store
+	         * Load the list of apps available in the DataOrb app store
 	         *
 	         * @param compatibleOnly If true, apps that are incompatible with the current system will be filtered out
 	         * @returns {Promise}
@@ -55578,7 +55578,7 @@
 	        }
 	
 	        /**
-	         * Install the specified app version from the DHIS 2 app store
+	         * Install the specified app version from the DataOrb app store
 	         *
 	         * @param uid The uid of the app version to install
 	         * @returns {Promise}
@@ -55745,10 +55745,10 @@
 	 * @module uid
 	 *
 	 * @description
-	 * Client side implementation of the DHIS2 code (uid) generator.
+	 * Client side implementation of the DataOrb code (uid) generator.
 	 * ({@link https://github.com/dhis2/dhis2-core/blob/ad2d5dea959aff3146d8fe5796cf0b75eb6ee5d8/dhis-2/dhis-api/src/main/java/org/hisp/dhis/common/CodeGenerator.java|CodeGenerator.java})
 	 *
-	 * This module is used to generate and validate DHIS2 uids. A valid DHIS2 uid is a 11 character string which starts with a letter from the ISO basic Latin alphabet.
+	 * This module is used to generate and validate DataOrb uids. A valid DataOrb uid is a 11 character string which starts with a letter from the ISO basic Latin alphabet.
 	 */
 	
 	var abc = 'abcdefghijklmnopqrstuvwxyz';
@@ -55766,7 +55766,7 @@
 	}
 	
 	/**
-	 * Generate a valid DHIS2 uid. A valid DHIS2 uid is a 11 character string which starts with a letter from the ISO basic Latin alphabet.
+	 * Generate a valid DataOrb uid. A valid DataOrb uid is a 11 character string which starts with a letter from the ISO basic Latin alphabet.
 	 *
 	 * @return {string} A 11 character uid that always starts with a letter.
 	 *
@@ -59559,7 +59559,7 @@
 	/**
 	 * Utility function to load the app manifest.
 	 *
-	 * The manifest well be enhanced with a `getBaseUrl()` utility function that will return the base url of the DHIS2 instance.
+	 * The manifest well be enhanced with a `getBaseUrl()` utility function that will return the base url of the DataOrb instance.
 	 * This is a simple getter for the `activities.dhis.href` property on the manifest.
 	 *
 	 * @example
@@ -59573,7 +59573,7 @@
 	 * @param {string} url The location of the manifest. Generally this is located in the root of your app folder. (e.g. './manifest.webapp)
 	 * @param {Api} [ApiClass] An implementation of the Api class that will be used to fetch the manifest.
 	 *
-	 * @returns {Promise} Returns a Promise to  the DHIS2 app manifest with the added `getBaseUrl` method.
+	 * @returns {Promise} Returns a Promise to  the DataOrb app manifest with the added `getBaseUrl` method.
 	 */
 	function getManifest(url) {
 	    var ApiClass = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : _Api2.default;
@@ -59652,7 +59652,7 @@
 	}
 	
 	/**
-	 * Init function that used to initialise {@link module:d2.init~d2|d2}. This will load the schemas from the DHIS2 api and configure your {@link module:d2.init~d2|d2} instance.
+	 * Init function that used to initialise {@link module:d2.init~d2|d2}. This will load the schemas from the DataOrb api and configure your {@link module:d2.init~d2|d2} instance.
 	 *
 	 * The `config` object that can be passed into init can have the following properties:
 	 *
@@ -59721,7 +59721,7 @@
 	         * System instance to interact with system information like system settings, system info etc.
 	         *
 	         * @example
-	         * console.log(d2.system.version.major); // 2 for DHIS 2.27
+	         * console.log(d2.system.version.major); // 2 for DataOrb.27
 	         *
 	         * @see {@link module:system/System~System|System}
 	         * @instance
@@ -59866,7 +59866,7 @@
 	    }).catch(function (error) {
 	        logger.error('Unable to get schemas from the api', JSON.stringify(error), error);
 	
-	        deferredD2Init.reject('Unable to get schemas from the DHIS2 API');
+	        deferredD2Init.reject('Unable to get schemas from the DataOrb API');
 	        return deferredD2Init.promise;
 	    });
 	}
@@ -60656,7 +60656,7 @@
 	         * Load translations
 	         *
 	         * First, all properties files (specified with addSource) are loaded.
-	         * Then, if any untranslated strings remain, these are POSTed to the i18n endpoint of the DHIS2 API.
+	         * Then, if any untranslated strings remain, these are POSTed to the i18n endpoint of the DataOrb API.
 	         *
 	         * @returns {Promise}
 	         */

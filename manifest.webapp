@@ -7,9 +7,9 @@
     }
   },
   "appType": "APP",
-  "name": "interpretation-app",
+  "name": "interpretation-pro",
   "version": "1.0.0",
-  "description": "Interpretations app",
+  "description": "Interpretations Pro",
   "developer": {
     "name": "James Chang"
   },

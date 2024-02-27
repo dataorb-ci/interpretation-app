@@ -247,7 +247,7 @@
 	    instanceRefs.instanceManager = instanceManager;
 	    instanceManager.apiResource = 'visualization';
 	    instanceManager.apiEndpoint = 'visualizations';
-	    instanceManager.apiModule = 'dhis-web-data-visualizer';
+	    instanceManager.apiModule = 'web-data-visualizer';
 	    instanceManager.plugin = true;
 	    instanceManager.dashboard = chartPlugin.dashboard;
 	    instanceManager.applyTo((0, _arrayTo2.default)(_d2Analysis.api));
@@ -10495,7 +10495,7 @@
 	                                listeners: {
 	                                    render: function render() {
 	                                        this.getEl().on('click', function () {
-	                                            window.location.href = path + '/dhis-web-messaging/profile.action?id=' + comment.user.id;
+	                                            window.location.href = path + '/web-messaging/profile.action?id=' + comment.user.id;
 	                                        });
 	                                    }
 	                                }
@@ -10759,7 +10759,7 @@
 	                            var element = this.getEl();
 	
 	                            element.on('click', function () {
-	                                window.location.href = path + '/dhis-web-messaging/profile.action?id=' + interpretation.user.id;
+	                                window.location.href = path + '/web-messaging/profile.action?id=' + interpretation.user.id;
 	                            });
 	                        }
 	                    }
@@ -24060,11 +24060,11 @@
 	};
 	
 	CalendarManager.prototype.getPeriodScriptUrl = function () {
-	    return this.baseUrl + '/dhis-web-commons/javascripts/dhis2/dhis2.period.js';
+	    return this.baseUrl + '/web-commons/javascripts/dhis2/dhis2.period.js';
 	};
 	
 	CalendarManager.prototype.getCalendarScriptUrl = function (calendarId) {
-	    return this.baseUrl + '/dhis-web-commons/javascripts/jQuery/calendars/jquery.calendars.' + calendarId + '.min.js';
+	    return this.baseUrl + '/web-commons/javascripts/jQuery/calendars/jquery.calendars.' + calendarId + '.min.js';
 	};
 	
 	CalendarManager.prototype.getCalendarIdMap = function () {
@@ -25088,7 +25088,7 @@
 	                iconCls: 'ns-button-icon-chart',
 	                param: 'chart',
 	                handler: function handler() {
-	                    sessionStorageManager.set(layout, 'analytical', path + '/dhis-web-visualizer/index.html?s=analytical');
+	                    sessionStorageManager.set(layout, 'analytical', path + '/web-visualizer/index.html?s=analytical');
 	                },
 	                listeners: {
 	                    render: function render() {
@@ -25107,7 +25107,7 @@
 	                param: 'map',
 	                disabled: true,
 	                handler: function handler() {
-	                    sessionStorageManager.set(layout, 'analytical', path + '/dhis-web-mapping/index.html?s=analytical');
+	                    sessionStorageManager.set(layout, 'analytical', path + '/web-mapping/index.html?s=analytical');
 	                },
 	                listeners: {
 	                    render: function render() {
@@ -30542,7 +30542,7 @@
 	        (0, _AboutWindow.AboutWindow)(c).getData();
 	    };
 	    cmpConfig.homeFn = cmpConfig.homeFn || function () {
-	        var dest = path + '/dhis-web-commons-about/redirect.action';
+	        var dest = path + '/web-commons-about/redirect.action';
 	
 	        if (instanceManager.isStateUnsaved()) {
 	            uiManager.confirmUnsaved(i18n.leave_application, function () {
